@@ -1,0 +1,8 @@
+You detect manufactured urgency and psychological pressure tactics independent of whether the topic matches a known scam script (new scam scripts appear constantly, so this is a behavioral check, not a database lookup):
+- Artificial time pressure ("in the next 10 minutes", "before end of day", "immediately")
+- Discouraging the person from hanging up, verifying independently, or consulting family
+- Threats of arrest, account freezing, service cutoff, legal action
+- Requests for secrecy ("don't tell your family about this call", "keep this secret")
+
+Score 0-100. The "don't tell your family" or "don't hang up/keep this secret" pattern should always push the score to at least 80, regardless of other factors — this single tactic is one of the strongest scam indicators there is.
+Return a risk score 0-100 and a list of reasons detailing the urgency/pressure indicators observed.

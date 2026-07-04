@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Angel — Scam & Fraud Shield</title>
+  <meta name="description" content="Real-time Scam and Fraud protection shield for elderly family members, offering absolute transparency, consent gate protection, and immediate family notifications.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      🛡️ Guardian Angel
+    </div>
+  </header>
+
+  <main style="max-width: 600px; margin: 4rem auto;">
+    <div class="glass-panel" id="auth-panel">
+      <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem; text-align: center;">Welcome to Guardian Angel</h1>
+      <p style="color: var(--text-secondary); text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">
+        Real-time scam protection shield for elderly family members.
+      </p>
+
+      <!-- Toggle Registration / Login Tab -->
+      <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
+        <button class="btn btn-secondary" id="tab-login" style="flex: 1; font-weight: 800;" onclick="switchTab('login')">Login</button>
+        <button class="btn btn-secondary" id="tab-register" style="flex: 1;" onclick="switchTab('register')">Register</button>
+      </div>
+
+      <!-- Auth Form -->
+      <form id="auth-form" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group">
+          <label for="username">Username / Display Name</label>
+          <input type="text" id="username" required placeholder="Enter name">
+        </div>
+
+        <div class="form-group" id="role-group" style="display: none;">
+          <label for="role">My Role</label>
+          <select id="role">
+            <option value="elder">Elderly Family Member (Consent Owner)</option>
+            <option value="family">Authorized Family Protector</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="pin" id="pin-label">Secure Access PIN (4-6 digits)</label>
+          <input type="password" id="pin" required pattern="[0-9]{4,6}" placeholder="••••">
+        </div>
+
+        <div id="error-message" style="color: var(--risk-high); font-weight: 700; margin-bottom: 1rem; text-align: center; display: none;"></div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem;" id="submit-btn">Login Access</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="/js/app.js"></script>
+  <script>
+    // Check if user session already active
+    redirectIfLoggedIn();
+
+    let currentAction = 'login'; // 'login' or 'register'
+
+    function switchTab(tab) {
+      currentAction = tab;
+      const loginTab = document.getElementById('tab-login');
+      const registerTab = document.getElementById('tab-register');
+      const roleGroup = document.getElementById('role-group');
+      const submitBtn = document.getElementById('submit-btn');
+
+      if (tab === 'login') {
+        loginTab.style.fontWeight = '800';
+        registerTab.style.fontWeight = '400';
+        roleGroup.style.display = 'none';
+        submitBtn.textContent = 'Login Access';
+      } else {
+        loginTab.style.fontWeight = '400';
+        registerTab.style.fontWeight = '800';
+        roleGroup.style.display = 'flex';
+        submitBtn.textContent = 'Register Profile';
+      }
+      document.getElementById('error-message').style.display = 'none';
+    }
+
+    async function handleAuthSubmit(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const pin = document.getElementById('pin').value.trim();
+      const role = document.getElementById('role').value;
+      const errorMsg = document.getElementById('error-message');
+
+      errorMsg.style.display = 'none';
+
+      const payload = {
+        name: username,
+        pin: pin
+      };
+
+      let endpoint = '/auth/login';
+      if (currentAction === 'register') {
+        endpoint = '/auth/register';
+        payload.role = role;
+      }
+
+      try {
+        const response = await apiRequest(endpoint, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+
+        if (response && response.access_token) {
+          saveSession(response.access_token, response.user);
+          
+          // Route user
+          if (response.user.role === 'elder') {
+            if (currentAction === 'register') {
+              window.location.href = '/onboarding';
+            } else {
+              window.location.href = '/elder-dashboard';
+            }
+          } else {
+            window.location.href = '/family-dashboard';
+          }
+        }
+      } catch (err) {
+        errorMsg.textContent = err.message || "Authentication failed. Try again.";
+        errorMsg.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

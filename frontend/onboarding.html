@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Angel Onboarding — Consent & Setup</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="elder-theme">
+  <header>
+    <div class="logo">
+      🛡️ Guardian Angel Setup
+    </div>
+    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+  </header>
+
+  <main style="max-width: 650px;">
+    <!-- Step nodes display -->
+    <div class="step-container">
+      <div class="step-node active" id="node-1">1</div>
+      <div class="step-node" id="node-2">2</div>
+      <div class="step-node" id="node-3">3</div>
+    </div>
+
+    <!-- Step 1: Plain language consent -->
+    <div class="glass-panel" id="step-1-panel">
+      <h1 style="font-size: 2.2rem; margin-bottom: 1.5rem;">How Guardian Angel protects you</h1>
+      
+      <div style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 2rem; color: var(--text-secondary);">
+        <p style="margin-bottom: 1.5rem;">
+          🛡️ Guardian Angel reads the words on your calls, in real time, to warn you if something looks like a scam.
+        </p>
+        <p style="margin-bottom: 1.5rem;">
+          ❌ It <strong>never</strong> records your voice and it <strong>never</strong> saves your full conversations.
+        </p>
+        <p style="margin-bottom: 1.5rem;">
+          ⚠️ If it detects a very risky scam or an unusual bank transfer, it will alert your family with a short summary, never the full call.
+        </p>
+      </div>
+
+      <button class="btn btn-primary btn-large" onclick="goToStep(2)">I Agree to Start</button>
+    </div>
+
+    <!-- Step 2: Second consent confirmation (PIN verification) -->
+    <div class="glass-panel" id="step-2-panel" style="display: none;">
+      <h1 style="font-size: 2.2rem; margin-bottom: 1.5rem;">Confirm Consent</h1>
+      <p style="font-size: 1.25rem; margin-bottom: 2rem; color: var(--text-secondary);">
+        Please re-enter your Security PIN to confirm you consent to call analysis.
+      </p>
+
+      <form id="consent-confirm-form" onsubmit="confirmConsent(event)">
+        <div class="form-group">
+          <label for="confirm-pin" style="font-size: 1.2rem;">My Access PIN</label>
+          <input type="password" id="confirm-pin" required pattern="[0-9]{4,6}" placeholder="••••" style="font-size: 1.5rem; text-align: center; letter-spacing: 0.5em; padding: 1rem;">
+        </div>
+
+        <div id="consent-error" style="color: var(--risk-high); font-weight: 700; margin-bottom: 1.5rem; text-align: center; display: none;"></div>
+
+        <div style="display: flex; gap: 1rem;">
+          <button type="button" class="btn btn-secondary" onclick="goToStep(1)" style="flex: 1; padding: 1.2rem;">Back</button>
+          <button type="submit" class="btn btn-primary" style="flex: 2; padding: 1.2rem; font-weight: 800;">Confirm Yes</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Step 3: Invite Family Member -->
+    <div class="glass-panel" id="step-3-panel" style="display: none;">
+      <h1 style="font-size: 2.2rem; margin-bottom: 1rem;">Connect Your Family</h1>
+      <p style="font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
+        Give this code to your family member. They will enter it on their device to receive alerts when scammers call you.
+      </p>
+
+      <div class="invite-card">
+        <p style="font-size: 1.1rem; color: var(--text-muted);">Family Invite Code</p>
+        <div class="invite-code" id="code-display">------</div>
+        <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem;">This code will expire in 24 hours.</p>
+        <button class="btn btn-secondary" onclick="generateNewCode()">Generate New Code</button>
+      </div>
+
+      <button class="btn btn-primary btn-large" style="margin-top: 2rem;" onclick="finishOnboarding()">Finish & Go to Dashboard</button>
+    </div>
+  </main>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/onboarding.js"></script>
+</body>
+</html>

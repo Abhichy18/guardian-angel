@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  guardian-angel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: guardian-angel-app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=sqlite:///./data/guardian_angel.db
+    volumes:
+      - ./data:/app/data          # Persist SQLite database
+      - ./frontend:/app/frontend  # Hot-reload frontend changes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

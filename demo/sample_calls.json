@@ -1,0 +1,84 @@
+[
+  {
+    "call_id": "demo-call-001",
+    "elder_id": "elder-demo-001",
+    "caller_number": "+18005551234",
+    "caller_claimed_identity": "IRS Tax Collection Department",
+    "transcript_chunks": [
+      { "speaker": "caller", "text": "Hello, this is Agent Williams from the IRS. We have detected a serious issue with your tax return from last year." },
+      { "speaker": "elder", "text": "Oh my, what kind of issue?" },
+      { "speaker": "caller", "text": "You owe $4,500 in back taxes. If you do not pay immediately, a warrant will be issued for your arrest today." },
+      { "speaker": "elder", "text": "Arrest? That sounds very serious..." },
+      { "speaker": "caller", "text": "Yes ma'am. But we can resolve this right now if you purchase gift cards worth $4,500 and read me the codes. This is the only way to avoid arrest." },
+      { "speaker": "elder", "text": "Gift cards? That seems unusual." },
+      { "speaker": "caller", "text": "This is standard government procedure. You must act NOW or officers will be dispatched to your home within the hour." }
+    ],
+    "expected_risk_tier": "high",
+    "expected_patterns": ["urgency_pressure", "government_impersonation", "gift_card_payment", "arrest_threat"],
+    "description": "Classic IRS impersonation scam with arrest threats and gift card payment demand."
+  },
+  {
+    "call_id": "demo-call-002",
+    "elder_id": "elder-demo-001",
+    "caller_number": "+18005559876",
+    "caller_claimed_identity": "Bank of America Fraud Department",
+    "transcript_chunks": [
+      { "speaker": "caller", "text": "Good afternoon. This is the fraud department at Bank of America. We have detected unauthorized activity on your account." },
+      { "speaker": "elder", "text": "Oh no, what happened?" },
+      { "speaker": "caller", "text": "Someone has been making large purchases on your debit card. We need to verify your identity to secure your account." },
+      { "speaker": "elder", "text": "Okay, what do you need?" },
+      { "speaker": "caller", "text": "I'll need your full Social Security number and your online banking password to verify your identity." },
+      { "speaker": "elder", "text": "My Social Security number? Let me think..." },
+      { "speaker": "caller", "text": "Ma'am, every second counts. If we don't act now, they could drain your entire account. Please provide your SSN immediately." }
+    ],
+    "expected_risk_tier": "high",
+    "expected_patterns": ["bank_impersonation", "credential_harvesting", "urgency_pressure", "social_engineering"],
+    "description": "Bank impersonation scam attempting to harvest Social Security number and banking credentials."
+  },
+  {
+    "call_id": "demo-call-003",
+    "elder_id": "elder-demo-001",
+    "caller_number": "+18005554321",
+    "caller_claimed_identity": "Microsoft Technical Support",
+    "transcript_chunks": [
+      { "speaker": "caller", "text": "Hello, this is Microsoft Technical Support. We have detected a virus on your computer that is sending your personal data to hackers." },
+      { "speaker": "elder", "text": "A virus? I don't know much about computers." },
+      { "speaker": "caller", "text": "Don't worry, I can help you fix this right now. I just need you to go to your computer and download a remote access tool so I can clean the virus." },
+      { "speaker": "elder", "text": "Okay, what do I need to do?" },
+      { "speaker": "caller", "text": "Go to this website and download the software. It will let me connect to your computer remotely. Also, the repair service costs $299, payable by wire transfer." }
+    ],
+    "expected_risk_tier": "high",
+    "expected_patterns": ["tech_support_scam", "remote_access_request", "wire_transfer", "urgency_pressure"],
+    "description": "Tech support scam requesting remote access and wire transfer payment."
+  },
+  {
+    "call_id": "demo-call-004",
+    "elder_id": "elder-demo-001",
+    "caller_number": "+15551234567",
+    "caller_claimed_identity": "Dr. Smith's Office",
+    "transcript_chunks": [
+      { "speaker": "caller", "text": "Hi, this is Sarah calling from Dr. Smith's office. We're confirming your appointment for next Tuesday at 2 PM." },
+      { "speaker": "elder", "text": "Oh yes, thank you for the reminder." },
+      { "speaker": "caller", "text": "Great! Just a reminder to bring your insurance card. See you Tuesday!" }
+    ],
+    "expected_risk_tier": "low",
+    "expected_patterns": [],
+    "description": "Legitimate call — doctor's office appointment reminder. Should NOT trigger alerts."
+  },
+  {
+    "call_id": "demo-call-005",
+    "elder_id": "elder-demo-001",
+    "caller_number": "+18005557777",
+    "caller_claimed_identity": "Grandson Tommy",
+    "transcript_chunks": [
+      { "speaker": "caller", "text": "Grandma? It's me, Tommy. I'm in trouble and I need your help." },
+      { "speaker": "elder", "text": "Tommy? You don't sound like yourself..." },
+      { "speaker": "caller", "text": "I got into a car accident and I'm at the hospital. I need $3,000 for bail money. Please don't tell Mom and Dad." },
+      { "speaker": "elder", "text": "Oh my goodness! Are you okay?" },
+      { "speaker": "caller", "text": "Please wire the money right away. My lawyer says I need it within the next hour or I'll have to stay in jail overnight." }
+    ],
+    "expected_risk_tier": "high",
+    "expected_patterns": ["grandparent_scam", "urgency_pressure", "secrecy_demand", "wire_transfer"],
+    "description": "Classic grandparent scam — impersonating a grandchild in distress requesting emergency wire transfer."
+  }
+]
