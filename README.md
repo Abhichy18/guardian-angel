@@ -1,7 +1,5 @@
 <div align="center">
 
-![Guardian Angel Banner](docs/assets/guardian_angel_banner.png)
-
 # 🛡️ GUARDIAN ANGEL
 ### **The Real-Time Scam & Fraud Shield for Older Generations**
 
@@ -21,11 +19,11 @@
 
 ## 📖 The Story: Why We Built Guardian Angel
 
-Imagine your grandmother receives a phone call. The caller ID displays "IRS Fraud Department." A firm, urgent voice on the other end warns her that her bank account has been compromised due to suspicious activity, and she must move her savings to a "secure government vault" immediately. 
+A scam takes less than 15 minutes.
 
-She is told: *“Do not hang up. Do not speak to your family. This is an active investigation.”*
+That's all it takes for an elderly parent or grandparent to lose a lifetime of savings. By the time banks, telecom providers, or family members react, the money is often gone.
 
-In less than 30 minutes, a lifetime of savings is wired to a scammer’s account. This is not a hypothetical scenario—**elder fraud accounts for over $3 Billion in losses annually in the US alone**, targeting the trust, isolation, and cognitive decline of older adults.
+Guardian Angel is designed to intervene before irreversible harm occurs.
 
 Existing solutions are either reactive (reporting after the loss) or overly intrusive (recording audio, violating privacy, or locking elders out of their own devices). **Guardian Angel is different.** It processes rolling live transcripts (never audio), filters data to enforce privacy, and puts absolute control in the hands of the elder while keeping the family connected in high-risk scenarios.
 
