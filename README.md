@@ -29,7 +29,7 @@ Existing solutions are either reactive (reporting after the loss) or overly intr
 
 ---
 
-## ⚡ The Narrative: Problem ➔ Solution ➔ Impact
+## ⚡ The Narrative: Problem ➔ Solution ➔ Impact.
 
 ```mermaid
 graph TD
