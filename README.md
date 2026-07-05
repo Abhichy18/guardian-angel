@@ -51,7 +51,7 @@ Guardian Angel is an AI-powered protection system that monitors phone calls in r
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start:-
 
 ### Prerequisites
 
