@@ -57,7 +57,7 @@ Guardian Angel is an AI-powered protection system that monitors phone calls in r
 
 - Python 3.11+
 - Docker & Docker Compose (optional)
-- An [OpenRouter API key](https://openrouter.ai/)
+- An [API key]
 
 ### 1. Clone & Configure
 
@@ -65,7 +65,7 @@ Guardian Angel is an AI-powered protection system that monitors phone calls in r
 git clone <repo-url> guardian-angel
 cd guardian-angel
 cp .env.example .env
-# Edit .env and add your OPENROUTER_API_KEY
+# Edit .env and add your API_KEY
 ```
 
 ### 2. Install Dependencies
