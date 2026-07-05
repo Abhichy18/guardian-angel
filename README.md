@@ -127,7 +127,7 @@ git clone https://github.com/your-repo/guardian-angel.git
 cd guardian-angel
 cp .env.example .env
 ```
-*(Open `.env` and configure your `OPENROUTER_API_KEY` for LLM analysis fallback, or use the mock key for checking logic flow).*
+*(Open `.env` and configure your 'API_KEY' for LLM analysis fallback, or use the mock key for checking logic flow).*
 
 ### 2. Spin Up Services
 We support both native Python and Docker setups.
