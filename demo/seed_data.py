@@ -20,7 +20,19 @@ import bcrypt
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from database.db import db
+# fn added 
+@app.on_event("startup")
+async def startup_db_client():
+    """Startup hook: connect to and initialize the SQLite database."""
+    logger.info("Starting up database...")
+    await db.connect()
+    await db.close()
+    logger.info("Database schema verification completed.")
 
+    # Seed demo data on every startup (safe since seed() clears tables first)
+    logger.info("Seeding demo data...")
+    await seed()
+    logger.info("Demo data seeded successfully.")
 
 async def seed():
     """Populate the database with demo data."""
