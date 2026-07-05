@@ -5,7 +5,10 @@
  * and routing helper functions across all application views.
  */
 
-const API_BASE = "http://127.0.0.1:8000/api";
+/**const API_BASE = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+  ? "http://127.0.0.1:8000/api"
+  : "https://your-backend-name.onrender.com/api";*/
+const API_BASE = window.location.origin + "/api";
 
 const StorageKeys = {
   TOKEN: "ga_token",
@@ -17,30 +20,30 @@ const StorageKeys = {
  */
 async function apiRequest(endpoint, options = {}) {
   const token = localStorage.getItem(StorageKeys.TOKEN);
-  
+
   const headers = {
     "Content-Type": "application/json",
     ...options.headers
   };
-  
+
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }
-  
+
   const fetchOptions = {
     ...options,
     headers
   };
-  
+
   try {
     const response = await fetch(`${API_BASE}${endpoint}`, fetchOptions);
-    
+
     // Check if unauthorized, trigger auto-logout
     if (response.status === 401 && endpoint !== "/auth/login") {
       logout();
       return null;
     }
-    
+
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.detail || "API Request failed");
@@ -91,7 +94,7 @@ function requireAuth(expectedRole = null) {
     window.location.href = "/";
     return null;
   }
-  
+
   if (expectedRole && user.role !== expectedRole) {
     if (user.role === "elder") {
       window.location.href = "/elder-dashboard";
@@ -100,7 +103,7 @@ function requireAuth(expectedRole = null) {
     }
     return null;
   }
-  
+
   return user;
 }
 
